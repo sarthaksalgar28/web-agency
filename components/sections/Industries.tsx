@@ -35,7 +35,7 @@ export function Industries() {
                     "group flex items-center gap-3 rounded-2xl border px-5 py-4 text-left transition-all duration-300",
                     active
                       ? "border-primary/60 bg-primary/10 shadow-glow"
-                      : "glass border-white/10 hover:border-primary/40"
+                      : "glass border-hairline/10 hover:border-primary/40"
                   )}
                 >
                   <span className="text-2xl">{ind.emoji}</span>

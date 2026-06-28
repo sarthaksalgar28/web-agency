@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,21 +10,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0B1220",
-        surface: "#101826",
-        "surface-light": "#16203180",
+        background: "rgb(var(--c-bg) / <alpha-value>)",
+        surface: "rgb(var(--c-surface) / <alpha-value>)",
         primary: {
-          DEFAULT: "#3B82F6",
-          dark: "#2563EB",
+          DEFAULT: "rgb(var(--c-primary) / <alpha-value>)",
+          dark: "rgb(var(--c-primary-dark) / <alpha-value>)",
         },
         secondary: {
-          DEFAULT: "#7C3AED",
-          dark: "#6D28D9",
+          DEFAULT: "rgb(var(--c-secondary) / <alpha-value>)",
+          dark: "rgb(var(--c-secondary-dark) / <alpha-value>)",
         },
-        success: "#22C55E",
-        "text-primary": "#FFFFFF",
-        "text-secondary": "#A8B3CF",
-        border: "#1E293B",
+        success: "rgb(var(--c-success) / <alpha-value>)",
+        "text-primary": "rgb(var(--c-text-primary) / <alpha-value>)",
+        "text-secondary": "rgb(var(--c-text-secondary) / <alpha-value>)",
+        border: "rgb(var(--c-border) / <alpha-value>)",
+        hairline: "rgb(var(--c-hairline) / <alpha-value>)",
       },
       fontFamily: {
         heading: ["var(--font-space-grotesk)", "sans-serif"],

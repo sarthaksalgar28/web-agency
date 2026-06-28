@@ -6,7 +6,7 @@ export function TrustedBy() {
   const items = [...trustedByLogos, ...trustedByLogos];
 
   return (
-    <section className="relative border-y border-white/5 py-12">
+    <section className="relative border-y border-hairline/10 py-12">
       <div className="container-max px-6">
         <p className="mb-8 text-center text-xs font-medium uppercase tracking-widest text-text-secondary">
           Trusted by businesses across industries
@@ -16,7 +16,7 @@ export function TrustedBy() {
             {items.map((logo, i) => (
               <div
                 key={i}
-                className="flex shrink-0 items-center gap-2 font-heading text-lg font-semibold text-text-secondary/70 transition-colors hover:text-white"
+                className="flex shrink-0 items-center gap-2 font-heading text-lg font-semibold text-text-secondary/70 transition-colors hover:text-text-primary"
               >
                 <span className="h-2 w-2 rounded-full bg-aurora-gradient" />
                 {logo}

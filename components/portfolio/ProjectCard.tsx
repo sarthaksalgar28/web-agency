@@ -26,11 +26,11 @@ export function ProjectCard({ project }: { project: Project }) {
         />
         {/* Laptop mockup frame */}
         <div className="absolute inset-x-8 top-8 bottom-0">
-          <div className="h-full rounded-t-xl border border-white/10 bg-surface/80 p-2 shadow-soft">
+          <div className="h-full rounded-t-xl border border-hairline/10 bg-surface/80 p-2 shadow-soft">
             <div className="mb-2 flex gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-white/20" />
-              <span className="h-2 w-2 rounded-full bg-white/20" />
-              <span className="h-2 w-2 rounded-full bg-white/20" />
+              <span className="h-2 w-2 rounded-full bg-hairline/20" />
+              <span className="h-2 w-2 rounded-full bg-hairline/20" />
+              <span className="h-2 w-2 rounded-full bg-hairline/20" />
             </div>
             <div
               className="h-full rounded-md"
@@ -78,7 +78,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.technologies.slice(0, 3).map((t) => (
             <span
               key={t}
-              className="rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-text-secondary"
+              className="rounded-full bg-hairline/5 px-2.5 py-1 text-[11px] text-text-secondary"
             >
               {t}
             </span>
@@ -96,7 +96,7 @@ export function ProjectCard({ project }: { project: Project }) {
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-xl glass px-4 py-2 text-sm font-medium transition-colors hover:bg-white/10"
+            className="inline-flex items-center gap-1.5 rounded-xl glass px-4 py-2 text-sm font-medium transition-colors hover:bg-hairline/10"
           >
             Live Site <ExternalLink size={15} />
           </a>

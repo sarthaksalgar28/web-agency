@@ -7,8 +7,45 @@
   --font-inter: "Inter", sans-serif;
 }
 
+/* ── Dark theme (default) ────────────────────────────────── */
+:root,
+.dark {
+  --c-bg: 11 18 32; /* #0B1220 */
+  --c-surface: 16 24 38; /* #101826 */
+  --c-primary: 59 130 246; /* #3B82F6 */
+  --c-primary-dark: 37 99 235;
+  --c-secondary: 124 58 237; /* #7C3AED */
+  --c-secondary-dark: 109 40 217;
+  --c-success: 34 197 94; /* #22C55E */
+  --c-text-primary: 255 255 255;
+  --c-text-secondary: 168 179 207; /* #A8B3CF */
+  --c-border: 30 41 59; /* #1E293B */
+  --c-hairline: 255 255 255; /* light overlay on dark */
+  --aurora-opacity: 1;
+  --grid-opacity: 0.4;
+  color-scheme: dark;
+}
+
+/* ── Light theme (clean & professional) ──────────────────── */
+.light {
+  --c-bg: 248 250 252; /* #F8FAFC */
+  --c-surface: 255 255 255; /* #FFFFFF */
+  --c-primary: 37 99 235; /* #2563EB deeper for contrast */
+  --c-primary-dark: 29 78 216;
+  --c-secondary: 109 40 217; /* #6D28D9 */
+  --c-secondary-dark: 91 33 182;
+  --c-success: 22 163 74; /* #16A34A */
+  --c-text-primary: 15 23 42; /* #0F172A */
+  --c-text-secondary: 71 85 105; /* #475569 */
+  --c-border: 226 232 240; /* #E2E8F0 */
+  --c-hairline: 15 23 42; /* dark overlay on light */
+  --aurora-opacity: 0.45;
+  --grid-opacity: 0.5;
+  color-scheme: light;
+}
+
 * {
-  border-color: theme("colors.border");
+  border-color: rgb(var(--c-border));
 }
 
 html {
@@ -16,11 +53,12 @@ html {
 }
 
 body {
-  background-color: #0b1220;
-  color: #ffffff;
+  background-color: rgb(var(--c-bg));
+  color: rgb(var(--c-text-primary));
   font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Lenis smooth scroll */
@@ -40,7 +78,7 @@ html.lenis body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b1220;
+  background: rgb(var(--c-bg));
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #3b82f6, #7c3aed);
@@ -49,10 +87,10 @@ html.lenis body {
 
 @layer components {
   .glass {
-    @apply bg-surface/60 backdrop-blur-xl border border-white/10;
+    @apply bg-surface/60 backdrop-blur-xl border border-hairline/10;
   }
   .glass-strong {
-    @apply bg-surface/80 backdrop-blur-2xl border border-white/10;
+    @apply bg-surface/80 backdrop-blur-2xl border border-hairline/10;
   }
   .aurora-text {
     @apply bg-clip-text text-transparent bg-[linear-gradient(135deg,#3B82F6,#7C3AED,#3B82F6)] bg-[length:200%_auto] animate-gradient-x;
@@ -70,10 +108,18 @@ html.lenis body {
     text-wrap: balance;
   }
   .grid-pattern {
-    background-image: linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+    background-image: linear-gradient(rgb(var(--c-primary) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--c-primary) / 0.06) 1px, transparent 1px);
     background-size: 60px 60px;
   }
+}
+
+/* Aurora + grid adapt to theme via opacity tokens */
+.aurora-wrap {
+  opacity: var(--aurora-opacity);
+}
+.grid-pattern {
+  opacity: var(--grid-opacity);
 }
 
 /* Reduced motion */

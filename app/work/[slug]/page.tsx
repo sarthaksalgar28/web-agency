@@ -67,7 +67,7 @@ export default async function CaseStudyPage({
           <div className="container-max relative z-10">
             <Link
               href="/#portfolio"
-              className="inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-white"
+              className="inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text-primary"
             >
               <ArrowLeft size={16} /> Back to portfolio
             </Link>
@@ -114,7 +114,7 @@ export default async function CaseStudyPage({
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl glass px-6 py-3 text-sm font-medium transition-colors hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-2xl glass px-6 py-3 text-sm font-medium transition-colors hover:bg-hairline/10"
                 >
                   <Github size={16} /> Source
                 </a>
@@ -235,7 +235,7 @@ export default async function CaseStudyPage({
               {project.testimonial && (
                 <Reveal>
                   <blockquote className="rounded-3xl glass p-8">
-                    <p className="text-lg italic text-white/90">
+                    <p className="text-lg italic text-text-primary/90">
                       “{project.testimonial.quote}”
                     </p>
                     <footer className="mt-4 text-sm text-text-secondary">
@@ -256,7 +256,7 @@ export default async function CaseStudyPage({
                   {project.technologies.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full bg-white/5 px-3 py-1.5 text-xs"
+                      className="rounded-full bg-hairline/5 px-3 py-1.5 text-xs"
                     >
                       {t}
                     </span>

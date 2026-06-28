@@ -40,7 +40,7 @@ export function FAQ() {
                     </span>
                     <motion.span
                       animate={{ rotate: isOpen ? 45 : 0 }}
-                      className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/5 text-primary"
+                      className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-hairline/5 text-primary"
                     >
                       <Plus size={16} />
                     </motion.span>

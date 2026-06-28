@@ -73,7 +73,7 @@ export function Contact() {
   };
 
   const inputClass =
-    "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm outline-none transition-colors focus:border-primary/60 placeholder:text-text-secondary";
+    "w-full rounded-xl bg-hairline/5 border border-hairline/10 px-4 py-3 text-sm outline-none transition-colors focus:border-primary/60 placeholder:text-text-secondary";
 
   return (
     <section id="contact" className="section-padding relative">
@@ -248,7 +248,7 @@ function ContactCard({
       whileHover={{ x: 4 }}
       className="flex items-center gap-4 rounded-3xl glass p-5 transition-colors hover:border-primary/40"
     >
-      <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/5">
+      <span className="grid h-11 w-11 place-items-center rounded-2xl bg-hairline/5">
         <Icon size={20} className={accent} />
       </span>
       <span>

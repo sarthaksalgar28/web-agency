@@ -16,7 +16,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative border-t border-white/5 pt-20">
+    <footer className="relative border-t border-hairline/10 pt-20">
       <div className="container-max px-6">
         <div className="grid gap-12 lg:grid-cols-4">
           <div className="lg:col-span-1">
@@ -52,7 +52,7 @@ export function Footer() {
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="text-sm text-text-secondary transition-colors hover:text-white"
+                    className="text-sm text-text-secondary transition-colors hover:text-text-primary"
                   >
                     {l.label}
                   </a>
@@ -68,7 +68,7 @@ export function Footer() {
                 <li key={s.id}>
                   <a
                     href="#services"
-                    className="text-sm text-text-secondary transition-colors hover:text-white"
+                    className="text-sm text-text-secondary transition-colors hover:text-text-primary"
                   >
                     {s.title}
                   </a>
@@ -83,7 +83,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-text-primary"
                 >
                   {siteConfig.contact.email}
                 </a>
@@ -91,7 +91,7 @@ export function Footer() {
               <li>
                 <a
                   href={`https://wa.me/${siteConfig.contact.whatsapp}`}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-text-primary"
                 >
                   WhatsApp us
                 </a>
@@ -101,7 +101,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/5 py-8 sm:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-hairline/10 py-8 sm:flex-row">
           <p className="text-xs text-text-secondary">
             © {year} {siteConfig.name}. All rights reserved.
           </p>

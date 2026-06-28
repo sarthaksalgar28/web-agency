@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/lib/config";
 import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -43,14 +44,15 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-text-secondary transition-colors hover:text-white"
+              className="text-sm text-text-secondary transition-colors hover:text-text-primary"
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-3">
+          <ThemeToggle />
           <Button href="#contact" variant="primary">
             Start Your Project
           </Button>
@@ -79,14 +81,17 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-4 py-3 text-sm text-text-secondary hover:bg-white/5 hover:text-white"
+                  className="rounded-xl px-4 py-3 text-sm text-text-secondary hover:bg-hairline/5 hover:text-text-primary"
                 >
                   {link.label}
                 </a>
               ))}
-              <Button href="#contact" className="mt-2 w-full" magnetic={false}>
-                Start Your Project
-              </Button>
+              <div className="mt-2 flex items-center gap-2">
+                <ThemeToggle />
+                <Button href="#contact" className="flex-1" magnetic={false}>
+                  Start Your Project
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}

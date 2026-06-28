@@ -84,7 +84,7 @@ export function Portfolio() {
             />
             {query && (
               <button onClick={() => setQuery("")} aria-label="Clear search">
-                <X size={16} className="text-text-secondary hover:text-white" />
+                <X size={16} className="text-text-secondary hover:text-text-primary" />
               </button>
             )}
           </div>
@@ -179,8 +179,8 @@ function FilterChip({
         "rounded-full border transition-all duration-200",
         small ? "px-3 py-1 text-xs" : "px-4 py-2 text-sm",
         active
-          ? "border-primary/60 bg-primary/15 text-white"
-          : "border-white/10 bg-white/5 text-text-secondary hover:border-white/30 hover:text-white"
+          ? "border-primary/60 bg-primary/15 text-text-primary"
+          : "border-hairline/10 bg-hairline/5 text-text-secondary hover:border-hairline/30 hover:text-text-primary"
       )}
     >
       {label}

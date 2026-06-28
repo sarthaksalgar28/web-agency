@@ -22,10 +22,10 @@ interface ButtonProps {
 const variants: Record<Variant, string> = {
   primary:
     "bg-aurora-gradient bg-[length:200%_auto] text-white shadow-glow hover:shadow-glow-purple hover:bg-right",
-  secondary: "glass text-white hover:bg-white/10",
-  ghost: "text-text-secondary hover:text-white",
+  secondary: "glass text-text-primary hover:bg-hairline/10",
+  ghost: "text-text-secondary hover:text-text-primary",
   outline:
-    "border border-white/20 text-white hover:border-primary hover:bg-primary/10",
+    "border border-hairline/20 text-text-primary hover:border-primary hover:bg-primary/10",
 };
 
 export function Button({

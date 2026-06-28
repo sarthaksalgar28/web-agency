@@ -4,6 +4,10 @@ import "./globals.css";
 import { siteConfig } from "@/lib/config";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { CursorGlow } from "@/components/providers/CursorGlow";
+import {
+  ThemeProvider,
+  themeNoFlashScript,
+} from "@/components/providers/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -84,13 +88,18 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeNoFlashScript }} />
+      </head>
       <body className="font-body antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <CursorGlow />
-        <SmoothScroll>{children}</SmoothScroll>
+        <ThemeProvider>
+          <CursorGlow />
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
