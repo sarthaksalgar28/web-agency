@@ -1,15 +1,17 @@
 "use client";
 
 import { trustedByLogos } from "@/lib/data/content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function TrustedBy() {
   const items = [...trustedByLogos, ...trustedByLogos];
+  const { c } = useLanguage();
 
   return (
     <section className="relative border-y border-hairline/10 py-12">
       <div className="container-max px-6">
         <p className="mb-8 text-center text-xs font-medium uppercase tracking-widest text-text-secondary">
-          Trusted by businesses across industries
+          {c.trustedBy.label}
         </p>
         <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
           <div className="flex w-max animate-marquee gap-12">

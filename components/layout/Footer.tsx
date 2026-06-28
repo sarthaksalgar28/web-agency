@@ -3,9 +3,11 @@
 import { Github, Linkedin, Twitter, Instagram, Dribbble } from "lucide-react";
 import { siteConfig, navLinks } from "@/lib/config";
 import { services } from "@/lib/data/content";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { c } = useLanguage();
 
   const socials = [
     { icon: Twitter, href: siteConfig.social.twitter, label: "Twitter" },
@@ -46,15 +48,15 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading text-sm font-semibold">Navigation</h4>
+            <h4 className="font-heading text-sm font-semibold">{c.footer.navigation}</h4>
             <ul className="mt-4 space-y-2.5">
-              {navLinks.map((l) => (
+              {navLinks.map((l, i) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
                     className="text-sm text-text-secondary transition-colors hover:text-text-primary"
                   >
-                    {l.label}
+                    {c.nav[i] ?? l.label}
                   </a>
                 </li>
               ))}
@@ -62,15 +64,15 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading text-sm font-semibold">Services</h4>
+            <h4 className="font-heading text-sm font-semibold">{c.footer.services}</h4>
             <ul className="mt-4 space-y-2.5">
-              {services.slice(0, 6).map((s) => (
+              {services.slice(0, 6).map((s, i) => (
                 <li key={s.id}>
                   <a
                     href="#services"
                     className="text-sm text-text-secondary transition-colors hover:text-text-primary"
                   >
-                    {s.title}
+                    {c.services.items[i]?.title ?? s.title}
                   </a>
                 </li>
               ))}
@@ -78,7 +80,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading text-sm font-semibold">Get in touch</h4>
+            <h4 className="font-heading text-sm font-semibold">{c.footer.getInTouch}</h4>
             <ul className="mt-4 space-y-2.5 text-sm text-text-secondary">
               <li>
                 <a
@@ -93,7 +95,7 @@ export function Footer() {
                   href={`https://wa.me/${siteConfig.contact.whatsapp}`}
                   className="transition-colors hover:text-text-primary"
                 >
-                  WhatsApp us
+                  {c.footer.whatsappUs}
                 </a>
               </li>
               <li>{siteConfig.contact.address}</li>
@@ -103,10 +105,10 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-hairline/10 py-8 sm:flex-row">
           <p className="text-xs text-text-secondary">
-            © {year} {siteConfig.name}. All rights reserved.
+            © {year} {siteConfig.name}. {c.footer.rights}
           </p>
           <p className="text-xs text-text-secondary">
-            Crafted with precision · Built for performance
+            {c.footer.tagline}
           </p>
         </div>
       </div>

@@ -5,20 +5,29 @@ import { Check } from "lucide-react";
 import { pricingPlans } from "@/lib/data/content";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
 export function Pricing() {
+  const { c } = useLanguage();
+  const plans = pricingPlans.map((p, i) => ({
+    id: p.id,
+    price: p.price,
+    highlighted: p.highlighted,
+    ...c.pricing.items[i],
+  }));
+
   return (
     <section id="pricing" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Pricing"
-          title="Simple, transparent pricing"
-          subtitle="Pick a starting point — every project is tailored to your goals. No hidden fees, ever."
+          eyebrow={c.pricing.eyebrow}
+          title={c.pricing.title}
+          subtitle={c.pricing.subtitle}
         />
 
         <div className="mt-16 grid gap-6 lg:grid-cols-3">
-          {pricingPlans.map((plan, i) => (
+          {plans.map((plan, i) => (
             <Reveal key={plan.id} delay={i * 0.08}>
               <motion.div
                 whileHover={{ y: -8 }}
@@ -31,7 +40,7 @@ export function Pricing() {
               >
                 {plan.highlighted && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-aurora-gradient px-4 py-1 text-xs font-medium text-white">
-                    Most Popular
+                    {c.pricing.mostPopular}
                   </span>
                 )}
                 <h3 className="font-heading text-xl font-semibold">{plan.name}</h3>

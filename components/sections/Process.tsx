@@ -4,15 +4,19 @@ import { motion } from "framer-motion";
 import { processSteps } from "@/lib/data/content";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/ui/Icon";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Process() {
+  const { c } = useLanguage();
+  const steps = processSteps.map((s, i) => ({ step: s.step, icon: s.icon, ...c.process.items[i] }));
+
   return (
     <section id="process" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Our Process"
-          title="A clear path from idea to launch"
-          subtitle="No mystery, no chaos — a proven, transparent process that keeps you in the loop at every step."
+          eyebrow={c.process.eyebrow}
+          title={c.process.title}
+          subtitle={c.process.subtitle}
         />
 
         <div className="relative mt-16">
@@ -20,7 +24,7 @@ export function Process() {
           <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-primary/40 via-secondary/40 to-transparent lg:block" />
 
           <div className="grid gap-8 lg:grid-cols-4">
-            {processSteps.map((step, i) => (
+            {steps.map((step, i) => (
               <Reveal key={step.step} delay={i * 0.1}>
                 <motion.div
                   whileHover={{ y: -6 }}

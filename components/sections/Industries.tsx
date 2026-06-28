@@ -4,22 +4,29 @@ import { motion } from "framer-motion";
 import { industries } from "@/lib/data/content";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
 import { usePortfolioFilter } from "@/components/providers/PortfolioFilterContext";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
 export function Industries() {
   const { industry, setIndustry } = usePortfolioFilter();
+  const { c } = useLanguage();
+  const items = industries.map((ind, i) => ({
+    id: ind.id,
+    emoji: ind.emoji,
+    ...c.industries.items[i],
+  }));
 
   return (
     <section id="industries" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Industries"
-          title="Industries We've Worked With"
-          subtitle="Hover an industry to instantly filter our portfolio below. We adapt our craft to every domain."
+          eyebrow={c.industries.eyebrow}
+          title={c.industries.title}
+          subtitle={c.industries.subtitle}
         />
 
         <div className="mt-14 flex flex-wrap justify-center gap-4">
-          {industries.map((ind, i) => {
+          {items.map((ind, i) => {
             const active = industry === ind.id;
             return (
               <Reveal key={ind.id} delay={i * 0.05}>
@@ -41,7 +48,7 @@ export function Industries() {
                   <span className="text-2xl">{ind.emoji}</span>
                   <span>
                     <span className="block font-heading text-sm font-semibold">
-                      {ind.name}
+                      {ind.label}
                     </span>
                     <span className="block text-xs text-text-secondary">
                       {ind.description}

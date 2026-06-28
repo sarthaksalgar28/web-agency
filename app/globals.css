@@ -5,6 +5,7 @@
 :root {
   --font-space-grotesk: "Space Grotesk", sans-serif;
   --font-inter: "Inter", sans-serif;
+  --font-devanagari: "Noto Sans Devanagari", sans-serif;
 }
 
 /* ── Dark theme (default) ────────────────────────────────── */
@@ -59,6 +60,12 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Marathi: use a Devanagari-capable font stack */
+html[lang="mr"] body,
+html[lang="mr"] {
+  font-family: var(--font-devanagari), var(--font-inter);
 }
 
 /* Lenis smooth scroll */

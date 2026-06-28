@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/config";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
@@ -8,6 +8,10 @@ import {
   ThemeProvider,
   themeNoFlashScript,
 } from "@/components/providers/ThemeProvider";
+import {
+  LanguageProvider,
+  langNoFlashScript,
+} from "@/components/providers/LanguageProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,6 +22,13 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const notoDevanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-devanagari",
   display: "swap",
 });
 
@@ -85,11 +96,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable}`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${notoDevanagari.variable}`}
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeNoFlashScript }} />
+        <script dangerouslySetInnerHTML={{ __html: langNoFlashScript }} />
       </head>
       <body className="font-body antialiased">
         <script
@@ -97,8 +109,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider>
-          <CursorGlow />
-          <SmoothScroll>{children}</SmoothScroll>
+          <LanguageProvider>
+            <CursorGlow />
+            <SmoothScroll>{children}</SmoothScroll>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

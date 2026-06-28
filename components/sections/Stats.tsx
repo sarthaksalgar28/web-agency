@@ -4,17 +4,20 @@ import { getPortfolioStats } from "@/lib/data/projects";
 import { Counter } from "@/components/ui/Counter";
 import { Reveal } from "@/components/ui/Reveal";
 import { Briefcase, Layers, Cpu, Calendar, Smile, Smartphone } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Stats() {
   const s = getPortfolioStats();
+  const { c } = useLanguage();
+  const labels = c.stats.items;
 
   const items = [
-    { icon: Briefcase, label: "Total Projects", value: s.totalProjects, suffix: "+" },
-    { icon: Layers, label: "Industries Served", value: s.industriesServed, suffix: "" },
-    { icon: Cpu, label: "Technologies Used", value: s.technologiesUsed, suffix: "+" },
-    { icon: Calendar, label: "Years Experience", value: s.yearsExperience, suffix: "+" },
-    { icon: Smile, label: "Client Satisfaction", value: s.clientSatisfaction, suffix: "%" },
-    { icon: Smartphone, label: "Responsive Sites", value: s.responsiveWebsites, suffix: "" },
+    { icon: Briefcase, label: labels[0], value: s.totalProjects, suffix: "+" },
+    { icon: Layers, label: labels[1], value: s.industriesServed, suffix: "" },
+    { icon: Cpu, label: labels[2], value: s.technologiesUsed, suffix: "+" },
+    { icon: Calendar, label: labels[3], value: s.yearsExperience, suffix: "+" },
+    { icon: Smile, label: labels[4], value: s.clientSatisfaction, suffix: "%" },
+    { icon: Smartphone, label: labels[5], value: s.responsiveWebsites, suffix: "" },
   ];
 
   return (
@@ -22,7 +25,7 @@ export function Stats() {
       <div className="container-max px-6">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {items.map((item, i) => (
-            <Reveal key={item.label} delay={i * 0.05}>
+            <Reveal key={i} delay={i * 0.05}>
               <div className="rounded-3xl glass p-6 text-center transition-colors hover:border-primary/40">
                 <item.icon
                   size={22}

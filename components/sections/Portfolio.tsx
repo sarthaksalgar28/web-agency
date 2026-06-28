@@ -11,12 +11,14 @@ import {
 import { SectionHeading } from "@/components/ui/Reveal";
 import { ProjectCard } from "@/components/portfolio/ProjectCard";
 import { usePortfolioFilter } from "@/components/providers/PortfolioFilterContext";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
 type FilterType = "industry" | "technology" | "featured";
 
 export function Portfolio() {
   const { industry: hoveredIndustry, setIndustry } = usePortfolioFilter();
+  const { c } = useLanguage();
   const [activeIndustry, setActiveIndustry] = useState<string | null>(null);
   const [activeTech, setActiveTech] = useState<string | null>(null);
   const [featuredOnly, setFeaturedOnly] = useState(false);
@@ -66,9 +68,9 @@ export function Portfolio() {
     <section id="portfolio" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Portfolio"
-          title="Selected Work & Case Studies"
-          subtitle="Real projects, real results. Filter by industry or technology, or search to find exactly what you need."
+          eyebrow={c.portfolio.eyebrow}
+          title={c.portfolio.title}
+          subtitle={c.portfolio.subtitle}
         />
 
         {/* Search + controls */}
@@ -78,12 +80,12 @@ export function Portfolio() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search projects, clients, technologies…"
+              placeholder={c.portfolio.searchPlaceholder}
               className="w-full bg-transparent text-sm outline-none placeholder:text-text-secondary"
-              aria-label="Search portfolio"
+              aria-label={c.portfolio.searchAria}
             />
             {query && (
-              <button onClick={() => setQuery("")} aria-label="Clear search">
+              <button onClick={() => setQuery("")} aria-label={c.portfolio.clearSearch}>
                 <X size={16} className="text-text-secondary hover:text-text-primary" />
               </button>
             )}
@@ -92,19 +94,19 @@ export function Portfolio() {
           {/* Industry filter chips */}
           <div className="flex flex-wrap items-center justify-center gap-2">
             <FilterChip
-              label="All"
+              label={c.portfolio.all}
               active={!activeIndustry && !featuredOnly}
               onClick={clearAll}
             />
             <FilterChip
-              label="★ Featured"
+              label={`★ ${c.portfolio.featured}`}
               active={featuredOnly}
               onClick={() => setFeaturedOnly((v) => !v)}
             />
             {industries.map((ind) => (
               <FilterChip
                 key={ind}
-                label={ind}
+                label={c.industryLabels[ind] ?? ind}
                 active={activeIndustry === ind}
                 onClick={() =>
                   setActiveIndustry((cur) => (cur === ind ? null : ind))
@@ -144,14 +146,14 @@ export function Portfolio() {
         {filtered.length === 0 && (
           <div className="mt-12 text-center">
             <p className="text-text-secondary">
-              No projects match your filters.
+              {c.portfolio.empty}
             </p>
             {hasFilters && (
               <button
                 onClick={clearAll}
                 className="mt-3 text-sm text-primary hover:underline"
               >
-                Clear all filters
+                {c.portfolio.clearFilters}
               </button>
             )}
           </div>

@@ -3,20 +3,22 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
-import { faqs } from "@/lib/data/content";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
+  const { c } = useLanguage();
+  const faqs = c.faq.items;
 
   return (
     <section id="faq" className="section-padding relative">
       <div className="container-max max-w-3xl">
         <SectionHeading
-          eyebrow="FAQ"
-          title="Frequently asked questions"
-          subtitle="Everything you need to know before we start working together."
+          eyebrow={c.faq.eyebrow}
+          title={c.faq.title}
+          subtitle={c.faq.subtitle}
         />
 
         <div className="mt-12 space-y-3">

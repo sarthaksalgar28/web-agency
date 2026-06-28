@@ -6,11 +6,14 @@ import { Menu, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/lib/config";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { c } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -40,28 +43,29 @@ export function Navbar() {
         </a>
 
         <div className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
+          {navLinks.map((link, i) => (
             <a
               key={link.href}
               href={link.href}
               className="text-sm text-text-secondary transition-colors hover:text-text-primary"
             >
-              {link.label}
+              {c.nav[i] ?? link.label}
             </a>
           ))}
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
+          <LanguageSwitcher />
           <ThemeToggle />
           <Button href="#contact" variant="primary">
-            Start Your Project
+            {c.common.startProject}
           </Button>
         </div>
 
         <button
           className="lg:hidden grid h-10 w-10 place-items-center rounded-xl glass"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label={c.navbar.toggleMenu}
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -76,20 +80,21 @@ export function Navbar() {
             className="lg:hidden mx-4 mt-2 rounded-2xl glass-strong p-4"
           >
             <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
+              {navLinks.map((link, i) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="rounded-xl px-4 py-3 text-sm text-text-secondary hover:bg-hairline/5 hover:text-text-primary"
                 >
-                  {link.label}
+                  {c.nav[i] ?? link.label}
                 </a>
               ))}
               <div className="mt-2 flex items-center gap-2">
+                <LanguageSwitcher />
                 <ThemeToggle />
                 <Button href="#contact" className="flex-1" magnetic={false}>
-                  Start Your Project
+                  {c.common.startProject}
                 </Button>
               </div>
             </div>

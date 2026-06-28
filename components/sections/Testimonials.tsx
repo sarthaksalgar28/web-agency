@@ -4,19 +4,26 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { projects } from "@/lib/data/projects";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Testimonials() {
+  const { c } = useLanguage();
   const testimonials = projects
     .filter((p) => p.testimonial)
-    .map((p) => ({ ...p.testimonial!, themeColor: p.themeColor }));
+    .map((p) => ({
+      quote: c.projects[p.slug]?.testimonialQuote ?? p.testimonial!.quote,
+      author: p.testimonial!.author,
+      role: c.projects[p.slug]?.testimonialRole ?? p.testimonial!.role,
+      themeColor: p.themeColor,
+    }));
 
   return (
     <section id="testimonials" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Testimonials"
-          title="What our clients say"
-          subtitle="We measure success by the businesses we help grow."
+          eyebrow={c.testimonials.eyebrow}
+          title={c.testimonials.title}
+          subtitle={c.testimonials.subtitle}
         />
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

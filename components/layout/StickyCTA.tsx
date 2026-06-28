@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { siteConfig } from "@/lib/config";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function StickyCTA() {
   const [show, setShow] = useState(false);
+  const { c } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 700);
@@ -21,7 +23,7 @@ export function StickyCTA() {
           href={`https://wa.me/${siteConfig.contact.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp"
+          aria-label={c.stickyCTA.chatWhatsApp}
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}

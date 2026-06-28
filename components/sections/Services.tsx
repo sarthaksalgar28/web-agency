@@ -5,19 +5,23 @@ import { services } from "@/lib/data/content";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import { Check } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Services() {
+  const { c } = useLanguage();
+  const items = services.map((s, i) => ({ id: s.id, icon: s.icon, ...c.services.items[i] }));
+
   return (
     <section id="services" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Services"
-          title="Everything you need to win online"
-          subtitle="From a first business website to complex web applications — we cover the full journey, end to end."
+          eyebrow={c.services.eyebrow}
+          title={c.services.title}
+          subtitle={c.services.subtitle}
         />
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service, i) => (
+          {items.map((service, i) => (
             <Reveal key={service.id} delay={i * 0.06}>
               <motion.article
                 whileHover={{ y: -6 }}

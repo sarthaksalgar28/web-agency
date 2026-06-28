@@ -3,15 +3,18 @@
 import { motion } from "framer-motion";
 import { technologies } from "@/lib/data/content";
 import { SectionHeading } from "@/components/ui/Reveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function Technologies() {
+  const { c } = useLanguage();
+
   return (
     <section id="technologies" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Technologies"
-          title="The modern stack we build on"
-          subtitle="Battle-tested tools chosen for speed, scalability, and developer excellence."
+          eyebrow={c.technologies.eyebrow}
+          title={c.technologies.title}
+          subtitle={c.technologies.subtitle}
         />
 
         <div className="mt-16 flex flex-wrap justify-center gap-3">
@@ -27,7 +30,9 @@ export function Technologies() {
             >
               <span className="h-2.5 w-2.5 rounded-full bg-aurora-gradient transition-transform group-hover:scale-125" />
               <span className="font-heading text-sm font-medium">{tech.name}</span>
-              <span className="text-xs text-text-secondary">· {tech.category}</span>
+              <span className="text-xs text-text-secondary">
+                · {c.technologies.categories[tech.category] ?? tech.category}
+              </span>
             </motion.div>
           ))}
         </div>

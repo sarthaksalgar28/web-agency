@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import type { Project } from "@/lib/types";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const { c } = useLanguage();
   return (
     <motion.article
       layout
@@ -53,11 +55,11 @@ export function ProjectCard({ project }: { project: Project }) {
             border: `1px solid ${project.themeColor}44`,
           }}
         >
-          {project.industry}
+          {c.industryLabels[project.industry] ?? project.industry}
         </span>
         {project.featured && (
           <span className="absolute right-4 top-4 z-10 rounded-full bg-aurora-gradient px-3 py-1 text-xs font-medium text-white">
-            Featured
+            {c.projectCard.featured}
           </span>
         )}
       </div>
@@ -71,7 +73,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </span>
         </div>
         <p className="mt-2 flex-1 text-sm text-text-secondary line-clamp-3">
-          {project.description}
+          {c.projects[project.slug]?.description ?? project.description}
         </p>
 
         <div className="mt-4 flex flex-wrap gap-1.5">
@@ -90,7 +92,7 @@ export function ProjectCard({ project }: { project: Project }) {
             href={`/work/${project.slug}`}
             className="inline-flex items-center gap-1.5 rounded-xl bg-aurora-gradient px-4 py-2 text-sm font-medium text-white transition-transform hover:scale-105"
           >
-            Case Study <ArrowUpRight size={15} />
+            {c.projectCard.caseStudy} <ArrowUpRight size={15} />
           </Link>
           <a
             href={project.liveUrl}
@@ -98,7 +100,7 @@ export function ProjectCard({ project }: { project: Project }) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-xl glass px-4 py-2 text-sm font-medium transition-colors hover:bg-hairline/10"
           >
-            Live Site <ExternalLink size={15} />
+            {c.projectCard.liveSite} <ExternalLink size={15} />
           </a>
         </div>
       </div>

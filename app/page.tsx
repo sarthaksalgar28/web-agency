@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { StickyCTA } from "@/components/layout/StickyCTA";
 import { PortfolioFilterProvider } from "@/components/providers/PortfolioFilterContext";
+import { LanguageGateWrapper } from "@/components/providers/LanguageGate";
 
 import { Hero } from "@/components/sections/Hero";
 import { TrustedBy } from "@/components/sections/TrustedBy";
@@ -20,26 +21,28 @@ import { Contact } from "@/components/sections/Contact";
 
 export default function HomePage() {
   return (
-    <PortfolioFilterProvider>
-      <Navbar />
-      <main className="relative">
-        <Hero />
-        <TrustedBy />
-        <Services />
-        <Industries />
-        <WhyChooseUs />
-        <Portfolio />
-        <Stats />
-        <Technologies />
-        <Process />
-        <Pricing />
-        <Testimonials />
-        <FAQ />
-        <BlogPreview />
-        <Contact />
-      </main>
-      <Footer />
-      <StickyCTA />
-    </PortfolioFilterProvider>
+    <LanguageGateWrapper>
+      <PortfolioFilterProvider>
+        <Navbar />
+        <main className="relative">
+          <Hero />
+          <TrustedBy />
+          <Services />
+          <Industries />
+          <WhyChooseUs />
+          <Portfolio />
+          <Stats />
+          <Technologies />
+          <Process />
+          <Pricing />
+          <Testimonials />
+          <FAQ />
+          <BlogPreview />
+          <Contact />
+        </main>
+        <Footer />
+        <StickyCTA />
+      </PortfolioFilterProvider>
+    </LanguageGateWrapper>
   );
 }

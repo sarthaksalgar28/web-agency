@@ -4,19 +4,23 @@ import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import { blogPosts } from "@/lib/data/content";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export function BlogPreview() {
+  const { c } = useLanguage();
+  const posts = blogPosts.map((p, i) => ({ slug: p.slug, ...c.blog.posts[i] }));
+
   return (
     <section id="blog" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Insights"
-          title="From our blog"
-          subtitle="Practical thoughts on web performance, design, and growth."
+          eyebrow={c.blog.eyebrow}
+          title={c.blog.title}
+          subtitle={c.blog.subtitle}
         />
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {blogPosts.map((post, i) => (
+          {posts.map((post, i) => (
             <Reveal key={post.slug} delay={i * 0.08}>
               <motion.article
                 whileHover={{ y: -6 }}
@@ -40,7 +44,7 @@ export function BlogPreview() {
                       <Clock size={13} /> {post.readTime}
                     </span>
                     <span className="inline-flex items-center gap-1 text-primary transition-transform group-hover:translate-x-1">
-                      Read <ArrowRight size={13} />
+                      {c.blog.read} <ArrowRight size={13} />
                     </span>
                   </div>
                 </div>

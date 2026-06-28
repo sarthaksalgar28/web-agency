@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import { siteConfig } from "@/lib/config";
 import { getPortfolioStats } from "@/lib/data/projects";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const floatingSnippets = [
   { code: "const growth = build();", top: "18%", left: "8%", delay: 0 },
@@ -16,6 +16,7 @@ const floatingSnippets = [
 
 export function Hero() {
   const stats = getPortfolioStats();
+  const { c } = useLanguage();
 
   return (
     <section
@@ -50,7 +51,7 @@ export function Hero() {
           className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium text-text-secondary"
         >
           <Sparkles size={14} className="text-primary" />
-          Premium Web Development Agency
+          {c.hero.badge}
         </motion.div>
 
         <motion.h1
@@ -59,8 +60,8 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="mx-auto max-w-4xl font-heading text-4xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl text-balance"
         >
-          We Build Websites That{" "}
-          <span className="aurora-text">Grow Businesses.</span>
+          {c.hero.headingPre}{" "}
+          <span className="aurora-text">{c.hero.headingAccent}</span>
         </motion.h1>
 
         <motion.p
@@ -69,8 +70,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mx-auto mt-6 max-w-2xl text-base text-text-secondary sm:text-lg text-balance"
         >
-          {siteConfig.name} crafts blazing-fast, conversion-focused websites and
-          web apps with design that belongs alongside the best on the internet.
+          {c.hero.subtitle}
         </motion.p>
 
         <motion.div
@@ -80,10 +80,10 @@ export function Hero() {
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Button href="#contact" variant="primary" className="px-8 py-4 text-base">
-            Start Your Project <ArrowRight size={18} />
+            {c.hero.ctaPrimary} <ArrowRight size={18} />
           </Button>
           <Button href="#portfolio" variant="secondary" className="px-8 py-4 text-base">
-            <Code2 size={18} /> View Our Work
+            <Code2 size={18} /> {c.hero.ctaSecondary}
           </Button>
         </motion.div>
 
@@ -95,10 +95,10 @@ export function Hero() {
           className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-3xl glass sm:grid-cols-4"
         >
           {[
-            { label: "Projects", value: `${stats.totalProjects}+` },
-            { label: "Industries", value: `${stats.industriesServed}` },
-            { label: "Technologies", value: `${stats.technologiesUsed}+` },
-            { label: "Satisfaction", value: `${stats.clientSatisfaction}%` },
+            { label: c.hero.stats.projects, value: `${stats.totalProjects}+` },
+            { label: c.hero.stats.industries, value: `${stats.industriesServed}` },
+            { label: c.hero.stats.technologies, value: `${stats.technologiesUsed}+` },
+            { label: c.hero.stats.satisfaction, value: `${stats.clientSatisfaction}%` },
           ].map((s) => (
             <div key={s.label} className="bg-surface/40 px-6 py-6">
               <div className="font-heading text-2xl font-bold sm:text-3xl">

@@ -3,48 +3,21 @@
 import { motion } from "framer-motion";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
 import { Gauge, ShieldCheck, Zap, Heart, Sparkles, LineChart } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
-const reasons = [
-  {
-    icon: Gauge,
-    title: "Blazing Performance",
-    desc: "We target 95+ Lighthouse scores and sub-second loads on every build.",
-  },
-  {
-    icon: Sparkles,
-    title: "World-Class Design",
-    desc: "Interfaces that look like they belong alongside Vercel, Stripe, and Linear.",
-  },
-  {
-    icon: Zap,
-    title: "Modern Tech Stack",
-    desc: "Next.js, React, and TypeScript — scalable, type-safe, future-proof code.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Built to Convert",
-    desc: "Every section is engineered to turn visitors into customers.",
-  },
-  {
-    icon: LineChart,
-    title: "SEO from Day One",
-    desc: "Technical SEO, schema, sitemaps, and Open Graph baked in.",
-  },
-  {
-    icon: Heart,
-    title: "Long-Term Partner",
-    desc: "Ongoing support and iteration — we grow with your business.",
-  },
-];
+const icons = [Gauge, Sparkles, Zap, ShieldCheck, LineChart, Heart];
 
 export function WhyChooseUs() {
+  const { c } = useLanguage();
+  const reasons = c.whyChooseUs.items.map((r, i) => ({ icon: icons[i], ...r }));
+
   return (
     <section id="why-us" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Why Choose Us"
-          title="Premium results, without the agency overhead"
-          subtitle="We combine design taste, engineering rigor, and a growth mindset to deliver websites that actually move the needle."
+          eyebrow={c.whyChooseUs.eyebrow}
+          title={c.whyChooseUs.title}
+          subtitle={c.whyChooseUs.subtitle}
         />
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { SectionHeading, Reveal } from "@/components/ui/Reveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
 interface FormValues {
@@ -25,6 +26,8 @@ interface FormValues {
 }
 
 export function Contact() {
+  const { c } = useLanguage();
+  const t = c.contact;
   const {
     register,
     handleSubmit,
@@ -79,9 +82,9 @@ export function Contact() {
     <section id="contact" className="section-padding relative">
       <div className="container-max">
         <SectionHeading
-          eyebrow="Contact"
-          title="Let's build something great"
-          subtitle="Tell us about your project and we'll get back within one business day."
+          eyebrow={t.eyebrow}
+          title={t.title}
+          subtitle={t.subtitle}
         />
 
         <div className="mt-16 grid gap-8 lg:grid-cols-5">
@@ -93,11 +96,11 @@ export function Contact() {
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1.5 block text-sm">Name</label>
+                  <label className="mb-1.5 block text-sm">{t.name}</label>
                   <input
-                    {...register("name", { required: "Name is required" })}
+                    {...register("name", { required: t.nameRequired })}
                     className={inputClass}
-                    placeholder="Your name"
+                    placeholder={t.namePlaceholder}
                   />
                   {errors.name && (
                     <p className="mt-1 text-xs text-red-400">
@@ -106,17 +109,17 @@ export function Contact() {
                   )}
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm">Email</label>
+                  <label className="mb-1.5 block text-sm">{t.email}</label>
                   <input
                     {...register("email", {
-                      required: "Email is required",
+                      required: t.emailRequired,
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Enter a valid email",
+                        message: t.emailInvalid,
                       },
                     })}
                     className={inputClass}
-                    placeholder="you@company.com"
+                    placeholder={t.emailPlaceholder}
                   />
                   {errors.email && (
                     <p className="mt-1 text-xs text-red-400">
@@ -127,24 +130,25 @@ export function Contact() {
               </div>
 
               <div className="mt-5">
-                <label className="mb-1.5 block text-sm">Budget</label>
+                <label className="mb-1.5 block text-sm">{t.budget}</label>
                 <select {...register("budget")} className={inputClass}>
-                  <option className="bg-surface">Under ₹15,000</option>
-                  <option className="bg-surface">₹15,000 – ₹45,000</option>
-                  <option className="bg-surface">₹45,000 – ₹1,50,000</option>
-                  <option className="bg-surface">₹1,50,000+</option>
+                  {t.budgetOptions.map((opt) => (
+                    <option key={opt} className="bg-surface">
+                      {opt}
+                    </option>
+                  ))}
                 </select>
               </div>
 
               <div className="mt-5">
-                <label className="mb-1.5 block text-sm">Project details</label>
+                <label className="mb-1.5 block text-sm">{t.projectDetails}</label>
                 <textarea
                   {...register("message", {
-                    required: "Please tell us about your project",
+                    required: t.projectRequired,
                   })}
                   rows={5}
                   className={cn(inputClass, "resize-none")}
-                  placeholder="What are you looking to build?"
+                  placeholder={t.projectPlaceholder}
                 />
                 {errors.message && (
                   <p className="mt-1 text-xs text-red-400">
@@ -160,23 +164,23 @@ export function Contact() {
               >
                 {status === "sending" && (
                   <>
-                    <Loader2 size={18} className="animate-spin" /> Sending…
+                    <Loader2 size={18} className="animate-spin" /> {t.sending}
                   </>
                 )}
                 {status === "sent" && (
                   <>
-                    <CheckCircle2 size={18} /> Message sent!
+                    <CheckCircle2 size={18} /> {t.sent}
                   </>
                 )}
                 {(status === "idle" || status === "error") && (
                   <>
-                    <Send size={18} /> Send Message
+                    <Send size={18} /> {t.send}
                   </>
                 )}
               </button>
               {status === "error" && (
                 <p className="mt-3 text-center text-xs text-red-400">
-                  Something went wrong. Please try WhatsApp or email instead.
+                  {t.error}
                 </p>
               )}
             </form>
@@ -188,22 +192,22 @@ export function Contact() {
               <ContactCard
                 href={`https://wa.me/${siteConfig.contact.whatsapp}`}
                 icon={MessageCircle}
-                label="WhatsApp"
-                value="Chat with us instantly"
+                label={t.cards.whatsappLabel}
+                value={t.cards.whatsappValue}
                 accent="text-success"
               />
               <ContactCard
                 href={`mailto:${siteConfig.contact.email}`}
                 icon={Mail}
-                label="Email"
+                label={t.cards.emailLabel}
                 value={siteConfig.contact.email}
                 accent="text-primary"
               />
               <ContactCard
                 href={siteConfig.contact.calendly}
                 icon={CalendarClock}
-                label="Book a Call"
-                value="Schedule a free intro call"
+                label={t.cards.bookCallLabel}
+                value={t.cards.bookCallValue}
                 accent="text-secondary"
               />
               <div className="flex-1 overflow-hidden rounded-3xl glass">
@@ -212,7 +216,7 @@ export function Contact() {
                   <span className="text-sm">{siteConfig.contact.address}</span>
                 </div>
                 <iframe
-                  title="Location map"
+                  title={t.mapTitle}
                   src={siteConfig.contact.mapsEmbed}
                   className="h-48 w-full grayscale"
                   loading="lazy"
