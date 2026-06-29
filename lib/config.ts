@@ -1,17 +1,17 @@
 export const siteConfig = {
-  // ⬇️ CHANGE THESE LATER — placeholder brand identity
-  name: "Aurora Labs",
-  shortName: "Aurora",
+  // Brand identity
+  name: "Jeevan Adhaar Solutions",
+  shortName: "Jeevan Adhaar",
   tagline: "We Build Websites That Grow Businesses.",
   description:
-    "Aurora Labs is a premium web development agency crafting high-performance, conversion-focused websites and web apps for modern businesses.",
+    "Jeevan Adhaar Solutions is a premium web development agency crafting high-performance, conversion-focused websites and web apps for modern businesses.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://your-agency-domain.com",
   ogImage: "/og-image.png",
 
   contact: {
     email: "hello@your-agency-domain.com",
-    phone: "+91 00000 00000",
-    whatsapp: "910000000000", // digits only, country code first
+    phone: "+91 81800 49551",
+    whatsapp: "918180049551", // digits only, country code first
     calendly: "https://calendly.com/your-handle/intro-call",
     mapsEmbed:
       "https://www.google.com/maps?q=Mumbai,India&output=embed",

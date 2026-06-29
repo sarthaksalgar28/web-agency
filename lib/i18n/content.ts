@@ -141,7 +141,7 @@ const en: SiteContent = {
     headingPre: "We Build Websites That ",
     headingAccent: "Grow Businesses.",
     subtitle:
-      "Aurora Labs crafts blazing-fast, conversion-focused websites and web apps with design that belongs alongside the best on the internet.",
+      "Jeevan Adhaar Solutions crafts blazing-fast, conversion-focused websites and web apps with design that belongs alongside the best on the internet.",
     ctaPrimary: "Start Your Project",
     ctaSecondary: "View Our Work",
     stats: {
@@ -558,7 +558,7 @@ const mr: SiteContent = {
     headingPre: "आम्ही अशा वेबसाइट्स तयार करतो ज्या ",
     headingAccent: "व्यवसाय वाढवतात.",
     subtitle:
-      "Aurora Labs अत्यंत वेगवान आणि रूपांतरण-केंद्रित वेबसाइट्स व वेब अॅप्स तयार करते — इंटरनेटवरील सर्वोत्तम डिझाइनच्या तोडीस तोड डिझाइनसह.",
+      "Jeevan Adhaar Solutions अत्यंत वेगवान आणि रूपांतरण-केंद्रित वेबसाइट्स व वेब अॅप्स तयार करते — इंटरनेटवरील सर्वोत्तम डिझाइनच्या तोडीस तोड डिझाइनसह.",
     ctaPrimary: "तुमचा प्रकल्प सुरू करा",
     ctaSecondary: "आमचे काम पाहा",
     stats: {
